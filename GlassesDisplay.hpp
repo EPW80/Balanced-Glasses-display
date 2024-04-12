@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <unordered_map>
 using std::string;
@@ -8,12 +9,12 @@ using std::string;
 //******************************
 
 // struct to store all the info about a particular pair of glasses
-struct Glasses{
+struct Glasses {
   string glassesColor_;
   string glassesShape_;
   string glassesBrand_;
   unsigned int barcode_;
-  Glasses(string glassesColor="", string glassesShape="", string glassesBrand="", unsigned int barcode=1000000);
+  Glasses(string glassesColor = "", string glassesShape = "", string glassesBrand = "", unsigned int barcode = 1000000);
 };
 
 // TO BE COMPLETED: unary function to return the hash value based on
@@ -49,7 +50,6 @@ unsigned int hashfct7(unsigned int);
 //******************************
 typedef std::unordered_map<unsigned int, Glasses, decltype(&hashfct1)> CustomHashTable;
 
-
 // class to store the bow collection
 class GlassesDisplay {
 public:
@@ -68,7 +68,7 @@ public:
   // with the given filename; THIS FUNCTION IS COMPLETE
   void readTextfile(string filename);
 
-
+  size_t size();
 
 private:
   CustomHashTable hT1, hT2, hT3, hT4, hT5, hT6, hT7;

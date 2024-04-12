@@ -1,11 +1,7 @@
-#include <algorithm>
 #include <string>
 #include <iostream>
 #include <fstream>
-
-#include <vector>
 #include <stdexcept>
-
 #include "GlassesDisplay.hpp"
 
 using std::cout;
@@ -13,31 +9,31 @@ using std::endl;
 using std::ifstream;
 using std::string;
 
-unsigned int hash(unsigned int barcode) {
+unsigned int hashfct1(unsigned int barcode) {
     return barcode % 10;
 }
 
-unsigned int hashSecondDigit(unsigned int barcode) {
+unsigned int hashfct2(unsigned int barcode) {
     return (barcode / 10) % 10;
 }
 
-unsigned int thirdDigitHash(unsigned int barcode) {
+unsigned int hashfct3(unsigned int barcode) {
     return (barcode / 100) % 10;
 }
 
-unsigned int hashDigit4(unsigned int barcode) {
+unsigned int hashfct4(unsigned int barcode) {
     return (barcode / 1000) % 10;
 }
 
-unsigned int hashFifthDigit(unsigned int barcode) {
+unsigned int hashfct5(unsigned int barcode) {
     return (barcode / 10000) % 10;
 }
 
-unsigned int hashSixthDigit(unsigned int barcode) {
+unsigned int hashfct6(unsigned int barcode) {
     return (barcode / 100000) % 10;
 }
 
-unsigned int hashSeventhDigit(unsigned int barcode) {
+unsigned int hashfct7(unsigned int barcode) {
     return (barcode / 1000000) % 10;
 }
 
@@ -65,21 +61,48 @@ void GlassesDisplay::readTextfile(string filename) {
 }
 
 void GlassesDisplay::addGlasses(string glassesColor, string glassesShape, string glassesBrand, unsigned int barcode) {
-  // todo
+  if (glassesColor.empty() || glassesShape.empty() || glassesBrand.empty() || barcode == 0) {
+        throw std::invalid_argument("Invalid glasses information");
+    }
+
+    Glasses new_glasses(glassesColor, glassesShape, glassesBrand, barcode);
+    hT1[barcode] = new_glasses;
+    hT2[barcode] = new_glasses;
+    hT3[barcode] = new_glasses;
+    hT4[barcode] = new_glasses;
+    hT5[barcode] = new_glasses;
+    hT6[barcode] = new_glasses;
+    hT7[barcode] = new_glasses;
 }
 
 bool GlassesDisplay::removeGlasses(unsigned int barcode) {
-  // todo
+    bool found = false;
 
+    if (hT1.find(barcode) != hT1.end()) found = true;
+    if (hT2.find(barcode) != hT2.end()) found = true;
+    if (hT3.find(barcode) != hT3.end()) found = true;
+    if (hT4.find(barcode) != hT4.end()) found = true;
+    if (hT5.find(barcode) != hT5.end()) found = true;
+
+    if (!found) return false;
+
+    hT1.erase(barcode);
+    hT2.erase(barcode);
+    hT3.erase(barcode);
+    hT4.erase(barcode);
+    hT5.erase(barcode);
+    hT6.erase(barcode);
+    hT7.erase(barcode);
+    return true;
 }
+
 
 unsigned int GlassesDisplay::bestHashing() {
   // todo
 }
 
 // ALREADY COMPLETED
-size_t GlassesDisplay::size()
-{
+size_t GlassesDisplay::size() {
   if ((hT1.size() != hT2.size()) || (hT1.size() != hT3.size()) || (hT1.size() != hT4.size()) || (hT1.size() != hT5.size()) || (hT1.size() != hT6.size()) || (hT1.size() != hT7.size()))
     throw std::length_error("Hash table sizes are not the same");
   return hT1.size();

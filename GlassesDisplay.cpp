@@ -76,29 +76,11 @@ void GlassesDisplay::addGlasses(string glassesColor, string glassesShape, string
 }
 
 bool GlassesDisplay::removeGlasses(unsigned int barcode) {
-    bool found = false;
 
-    if (hT1.find(barcode) != hT1.end()) found = true;
-    if (hT2.find(barcode) != hT2.end()) found = true;
-    if (hT3.find(barcode) != hT3.end()) found = true;
-    if (hT4.find(barcode) != hT4.end()) found = true;
-    if (hT5.find(barcode) != hT5.end()) found = true;
-
-    if (!found) return false;
-
-    hT1.erase(barcode);
-    hT2.erase(barcode);
-    hT3.erase(barcode);
-    hT4.erase(barcode);
-    hT5.erase(barcode);
-    hT6.erase(barcode);
-    hT7.erase(barcode);
-    return true;
 }
 
-
 unsigned int GlassesDisplay::bestHashing() {
-  // todo
+
 }
 
 // ALREADY COMPLETED

@@ -89,8 +89,8 @@ size_t GlassesDisplay::size() {
 	return hT1.size();
 }
 
+
 unsigned int GlassesDisplay::bestHashing() {
 
 }
-
 

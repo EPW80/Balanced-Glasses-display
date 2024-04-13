@@ -70,17 +70,27 @@ void GlassesDisplay::addGlasses(string glassesColor, string glassesShape, string
 }
 
 bool GlassesDisplay::removeGlasses(unsigned int barcode) {
-
-
+  if (hT1.find(barcode) != hT1.end()) {
+        hT1.erase(barcode);
+        hT2.erase(barcode);
+        hT3.erase(barcode);
+        hT4.erase(barcode);
+        hT5.erase(barcode);
+        hT6.erase(barcode);
+        hT7.erase(barcode);
+        return true;
+    }
+    return false;
 }
 
-unsigned int GlassesDisplay::bestHashing() {
-}
-
-
-// ALREADY COMPLETED
 size_t GlassesDisplay::size() {
   if ((hT1.size() != hT2.size()) || (hT1.size() != hT3.size()) || (hT1.size() != hT4.size()) || (hT1.size() != hT5.size())|| (hT1.size() != hT6.size()) || (hT1.size() != hT7.size()))
     throw std::length_error("Hash table sizes are not the same");
 	return hT1.size();
 }
+
+unsigned int GlassesDisplay::bestHashing() {
+
+}
+
+

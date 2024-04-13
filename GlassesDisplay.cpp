@@ -9,47 +9,35 @@ using std::ifstream;
 using std::cout;
 using std::endl;
 
-// function to return the hash value based on the first digit
 unsigned int hashfct1(unsigned int barcode) {
   return (barcode / 1000000) % 10;
 }
 
-// function to return the hash value based on the second digit
 unsigned int hashfct2(unsigned int barcode) {
   return (barcode / 100000) % 10;
 }
 
-// function to return the hash value based on the third digit
 unsigned int hashfct3(unsigned int barcode) {
   return (barcode / 10000) % 10;
 }
 
-// function to return the hash value based on the fourth digit
 unsigned int hashfct4(unsigned int barcode) {
   return (barcode / 1000) % 10;
 }
 
-// function to return the hash value based on the fifth digit
 unsigned int hashfct5(unsigned int barcode) {
   return (barcode / 100) % 10;
 }
 
-// function to return the hash value based on the sixth digit
 unsigned int hashfct6(unsigned int barcode) {
   return (barcode / 10) % 10;
 }
 
-// function to return the hash value based on the seventh digit
 unsigned int hashfct7(unsigned int barcode) {
   return barcode % 10;
 }
-
-// Constructor for struct Item
 Glasses::Glasses(string glassesColor, string glassesShape, string glassesBrand, unsigned int barcode): glassesColor_(glassesColor), glassesShape_(glassesShape), glassesBrand_(glassesBrand), barcode_(barcode)
 {};
-
-// Load information from a text file with the given filename
-// THIS FUNCTION IS COMPLETE
 void GlassesDisplay::readTextfile(string filename) {
   ifstream myfile(filename);
 
@@ -70,16 +58,23 @@ void GlassesDisplay::readTextfile(string filename) {
 }
 
 void GlassesDisplay::addGlasses(string glassesColor, string glassesShape, string glassesBrand, unsigned int barcode) {
-    Glasses new_glasses(glassesColor, glassesShape, glassesBrand, barcode);
+  Glasses new_glasses(glassesColor, glassesShape, glassesBrand, barcode);
+  
+  hT1[hashfct1(barcode)] = new_glasses;
+  hT2[hashfct2(barcode)] = new_glasses;
+  hT3[hashfct3(barcode)] = new_glasses;
+  hT4[hashfct4(barcode)] = new_glasses;
+  hT5[hashfct5(barcode)] = new_glasses;
+  hT6[hashfct6(barcode)] = new_glasses;
+  hT7[hashfct7(barcode)] = new_glasses;
 }
 
-
 bool GlassesDisplay::removeGlasses(unsigned int barcode) {
+
 
 }
 
 unsigned int GlassesDisplay::bestHashing() {
-
 }
 
 

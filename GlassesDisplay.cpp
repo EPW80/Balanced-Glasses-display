@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
+
 #include "GlassesDisplay.hpp"
 
 using std::string;
@@ -83,6 +84,39 @@ bool GlassesDisplay::removeGlasses(unsigned int barcode) {
     return false;
 }
 
+unsigned int GlassesDisplay::bestHashing() {
+    // Array of pointers to each of the hash tables
+    CustomHashTable* hashTables[7] = {&hT1, &hT2, &hT3, &hT4, &hT5, &hT6, &hT7};
+    unsigned int bestHashTableIndex = 0;
+    size_t minBalance = static_cast<size_t>(-1);  // Initialize to the maximum possible value
+
+    // Iterate through each hash table
+    for (unsigned int i = 0; i < 7; i++) {
+        size_t maxBucketSize = 0;
+        size_t minBucketSize = static_cast<size_t>(-1);  // Initialize to the maximum possible value
+
+        // Check only the first 10 buckets, or fewer if the hash table is smaller
+        unsigned int numBucketsToCheck = static_cast<unsigned int>(std::min(static_cast<size_t>(10), hashTables[i]->bucket_count()));
+        for (unsigned int j = 0; j < numBucketsToCheck; j++) {
+            size_t bucketSize = hashTables[i]->bucket_size(j);
+            if (bucketSize > maxBucketSize) {
+                maxBucketSize = bucketSize;  // Update max bucket size found
+            }
+            if (bucketSize < minBucketSize) {
+                minBucketSize = bucketSize;  // Update min bucket size found
+            }
+        }
+
+        size_t currentBalance = maxBucketSize - minBucketSize;  // Current balance of the hash table
+        if (currentBalance < minBalance) {
+            minBalance = currentBalance;
+            bestHashTableIndex = i + 1;  // Update the index of the best hash table
+        }
+    }
+
+    return bestHashTableIndex;
+}
+
 size_t GlassesDisplay::size() {
   if ((hT1.size() != hT2.size()) || (hT1.size() != hT3.size()) || (hT1.size() != hT4.size()) || (hT1.size() != hT5.size())|| (hT1.size() != hT6.size()) || (hT1.size() != hT7.size()))
     throw std::length_error("Hash table sizes are not the same");
@@ -90,7 +124,4 @@ size_t GlassesDisplay::size() {
 }
 
 
-unsigned int GlassesDisplay::bestHashing() {
-
-}
 

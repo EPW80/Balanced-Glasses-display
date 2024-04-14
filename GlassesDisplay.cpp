@@ -161,11 +161,11 @@ unsigned int GlassesDisplay::bestHashing()
         size_t balance = maxBucketSize - minBucketSize;
         if (balance < minBalance) {
             minBalance = balance;
-            bestHashTableIndex = i; // switching to 0-based internally for clarity
+            bestHashTableIndex = i; 
         }
     }
 
-    return bestHashTableIndex + 1; // adjusting to 1-based index for the return value
+    return bestHashTableIndex + 1; 
 }
 
 

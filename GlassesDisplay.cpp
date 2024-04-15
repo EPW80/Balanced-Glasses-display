@@ -107,15 +107,7 @@ bool GlassesDisplay::removeGlasses(unsigned int barcode) {
 }
 
 unsigned int GlassesDisplay::bestHashing() {
-  CustomHashTable * hash_tables[7] = {
-    & hT1,
-    & hT2,
-    & hT3,
-    & hT4,
-    & hT5,
-    & hT6,
-    & hT7
-  };
+  CustomHashTable* hash_tables[7] = {&hT1, &hT2, &hT3, &hT4, &hT5, &hT6, &hT7};
 
   unsigned int best_hash_table_index = 0;
   size_t min_balance = -1; 

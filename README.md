@@ -41,3 +41,5 @@ Each of the seven hash functions processes a 7-digit product number and returns 
 - hashfct7: Returns the seventh digit.
 
 All hash functions are implemented and provided in the source code.
+
+![Total Score](./totalscore.png)

@@ -12,29 +12,32 @@ epwilliams@csu.fullerton.edu
 
 ## Implementation
 
-- main.cpp contains tests to check on the correctness of the function members. This is provided for you to use to test your software as you are writing it. You may change this file to add helpful functions for your own testing. I will test your project with a different but similar file.
+- main.cpp: Contains tests to verify the correctness of the function members. This file can be modified to add helpful functions for your own testing. The project will be tested with a similar but different test file during evaluation.
 
-- GlassesDisplay.cpp and GlassesDisplay.hpp contain the skeleton of the classes and function member
+- GlassesDisplay.cpp and GlassesDisplay.hpp: Contain the implementation and declarations of the GlassesDisplay class, including methods for manipulating hash tables and determining the best hash function based on balance.
 
-- in1.txt contains 18 types of glasses
-- in2.txt contains 36 types of glasses
+- in1.txt and in2.txt: Input files containing 18 and 36 types of glasses, respectively, used for testing the hash table implementations.
 
-- The code to decide which digit leads to the most balanced hashtable is to be implemented in class . Since you will be comparing seven hashtables (which differ only in their hash function), class GlassesDisplay only has seven hash tables as its member variables. The other member functions are:
+### Class Methods
 
-- addGlasses(): Given information about one pair of glasses, create a Glasses object and insert into each of the seven hashtables. Note that each hash table has the product number as the key and a Glasses object as the value. To be completed.
+- addGlasses(): Inserts a new Glasses object into each of the seven hash tables. Each hash table uses the product number as the key and stores a Glasses object as the value. To be implemented.
 
-- removeGlasses(): Given product number, remove the corresponding pair of glasses from each of the seven hashtables. To be completed.
+- removeGlasses(): Removes a pair of glasses, identified by the product number, from each of the seven hash tables. To be implemented.
 
-- bestHashing(): The logic to calculate the balance for each of the seven hashtables, and then identifying the hashtable with the best balance should go into this method. Here, balance is defined as the difference between the sizes of the largest bucket and smallest bucket. Only check the first 10 buckets! (If the lowest balance factor is shared by more than one hash table, then return the first hash table with that lowest balance factor. For example, if both hT3 and hT7 have the lowest balance factor, then return the number 3. If hT2, hT4, and ht6 all share the lowest balance factor, then return the number 2.) Some hints on how to get the number of items in each bucket are included. To be completed.
+- bestHashing(): Calculates the balance for each of the seven hash tables (defined as the difference between the sizes of the largest and smallest buckets) and identifies the hash table with the best balance. This method considers only the first 10 buckets of each hash table. If multiple tables have the same lowest balance factor, it returns the first one. Partial implementation provided.
 
-- readTextfile(): The list of pairs of glasses are in a text file. This method calls addGlasses() for each line. The code to read from the text file is already given.
+- readTextfile(): Reads pairs of glasses from a specified text file and calls addGlasses() for each line. Implementation provided.
 
-The seven hash tables will differ in only the hash function that they will use. You are to provide code for these hash functions. Each hash function will take a 7-digit number and return either the first, second, etc. , seventh (last) digit.
+### Hash Functions
 
-- hashfct1(number): return the first digit of number. To be completed.
-- hashfct2(number): return the second digit of number. To be completed.
-- hashfct3(number): return the third digit of number. To be completed.
-- hashfct4(number): return the fourth digit of number. To be completed.
-- hashfct5(number): return the fifth digit of number. To be completed.
-- hashfct6(number): return the fourth digit of number. To be completed.
-- hashfct7(number): return the fifth digit of number. To be completed.
+Each of the seven hash functions processes a 7-digit product number and returns a specific digit:
+
+- hashfct1: Returns the first digit.
+- hashfct2: Returns the second digit.
+- hashfct3: Returns the third digit.
+- hashfct4: Returns the fourth digit.
+- hashfct5: Returns the fifth digit.
+- hashfct6: Returns the sixth digit.
+- hashfct7: Returns the seventh digit.
+
+All hash functions are implemented and provided in the source code.
